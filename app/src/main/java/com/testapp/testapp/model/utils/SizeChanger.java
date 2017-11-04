@@ -6,7 +6,11 @@ package com.testapp.testapp.model.utils;
 
 public class SizeChanger {
 
-    public static int zoomOut(int oldSize){
-        return Math.round(oldSize / Constants.SCALE);
+    public static int zoomOut(int oldSize, int scale){
+        return Math.round(oldSize / scale);
+    }
+
+    public static int zoomIn(int oldSize, int scale){
+        return Math.round(oldSize * scale);
     }
 }
