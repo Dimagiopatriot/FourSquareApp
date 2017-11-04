@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="image_height">100dp</dimen>
+    <dimen name="map_view_height">150dp</dimen>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="double_margin">20dp</dimen>
+    <dimen name="tip_user_icon">40dp</dimen>
+
+    <dimen name="large_text_size">30sp</dimen>
+    <dimen name="small_text_size">15sp</dimen>
+    <dimen name="medium_text_size">20sp</dimen>
+</resources>
