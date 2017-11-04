@@ -14,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestApiManager {
 
     private Retrofit retrofit;
+    private VenueApi venueApi;
 
     public RestApiManager(){
         Gson gson = new GsonBuilder().create();
@@ -21,5 +22,12 @@ public class RestApiManager {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(Constants.BASE_URL)
                 .build();
+    }
+
+    public VenueApi getVenueApi(){
+        if (venueApi == null){
+            venueApi = retrofit.create(VenueApi.class);
+        }
+        return venueApi;
     }
 }
