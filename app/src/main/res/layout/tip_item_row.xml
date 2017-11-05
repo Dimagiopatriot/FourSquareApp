@@ -1,55 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp">
 
-    <ImageView
-        android:id="@+id/tipImage"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tipText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:text="@string/stub_tip"
-        android:textSize="@dimen/medium_text_size" />
+        <ImageView
+            android:id="@+id/tipImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/tipUserIcon"
-        android:layout_width="@dimen/tip_user_icon"
-        android:layout_height="@dimen/tip_user_icon"
-        android:layout_below="@+id/tipText"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_toEndOf="@+id/tipUserIcon"
-        android:layout_toRightOf="@+id/tipUserIcon"
-        android:layout_below="@+id/tipText"
-        android:textSize="@dimen/medium_text_size"
-        android:text="Test Test"/>
-    <TextView
-        android:id="@+id/tipLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/tipText"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_marginRight="@dimen/margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:text="123"
-        android:textSize="@dimen/medium_text_size"
-        android:drawableRight="@drawable/ic_like"
-        android:drawableEnd="@drawable/ic_like" />
+        <TextView
+            android:id="@+id/tipText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:text="@string/stub_tip"
+            android:textSize="@dimen/medium_text_size" />
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/tipUserIcon"
+            android:layout_width="@dimen/tip_user_icon"
+            android:layout_height="@dimen/tip_user_icon"
+            android:layout_below="@+id/tipText"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tipText"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_toEndOf="@+id/tipUserIcon"
+            android:layout_toRightOf="@+id/tipUserIcon"
+            android:text="Test Test"
+            android:textSize="@dimen/medium_text_size" />
+
+        <TextView
+            android:id="@+id/tipLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tipText"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginRight="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:drawableEnd="@drawable/ic_like"
+            android:drawableRight="@drawable/ic_like"
+            android:text="123"
+            android:textSize="@dimen/medium_text_size" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

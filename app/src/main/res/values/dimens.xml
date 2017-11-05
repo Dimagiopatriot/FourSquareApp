@@ -7,7 +7,7 @@
     <dimen name="double_margin">20dp</dimen>
     <dimen name="tip_user_icon">40dp</dimen>
 
-    <dimen name="large_text_size">30sp</dimen>
+    <dimen name="large_text_size">25sp</dimen>
     <dimen name="small_text_size">15sp</dimen>
     <dimen name="medium_text_size">20sp</dimen>
 </resources>

@@ -1,67 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp">
 
-    <ImageView
-        android:id="@+id/venueImage"
-        android:layout_width="@dimen/image_width"
-        android:layout_height="@dimen/image_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/venueName"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:src="@android:drawable/ic_delete" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/venueName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_toEndOf="@+id/venueImage"
-        android:layout_toRightOf="@+id/venueImage"
-        android:text="@string/stub_venue_name"
-        android:textSize="@dimen/large_text_size" />
+        <ImageView
+            android:id="@+id/venueImage"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="@dimen/image_height"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/venueName"
+            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:src="@android:drawable/ic_delete" />
 
-    <TextView
-        android:id="@+id/venueCategoryAndPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/venueName"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_toEndOf="@+id/venueImage"
-        android:layout_toRightOf="@+id/venueImage"
-        android:text="@string/stub_venue_category_and_price"
-        android:textSize="@dimen/small_text_size" />
+        <TextView
+            android:id="@+id/venueName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/margin"
+            android:layout_toEndOf="@+id/venueImage"
+            android:layout_toRightOf="@+id/venueImage"
+            android:text="@string/stub_venue_name"
+            android:textSize="@dimen/large_text_size" />
 
-    <TextView
-        android:id="@+id/venueAddressAndDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/venueCategoryAndPrice"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_toEndOf="@+id/venueImage"
-        android:layout_toRightOf="@+id/venueImage"
-        android:text="@string/stub_venue_address"
-        android:textSize="@dimen/small_text_size" />
+        <TextView
+            android:id="@+id/venueCategoryAndPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/venueName"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_toEndOf="@+id/venueImage"
+            android:layout_toRightOf="@+id/venueImage"
+            android:text="@string/stub_venue_category_and_price"
+            android:textSize="@dimen/small_text_size" />
 
-    <TextView
-        android:id="@+id/venueRating"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="@dimen/double_margin"
-        android:layout_marginRight="@dimen/double_margin"
-        android:layout_marginTop="@dimen/margin"
-        android:background="@color/colorLightGreen"
-        android:text="@string/stub_venue_rating"
-        android:textSize="@dimen/large_text_size" />
+        <TextView
+            android:id="@+id/venueAddressAndDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/venueCategoryAndPrice"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_toEndOf="@+id/venueImage"
+            android:layout_toRightOf="@+id/venueImage"
+            android:text="@string/stub_venue_address"
+            android:textSize="@dimen/small_text_size" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/venueRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/double_margin"
+            android:layout_marginRight="@dimen/double_margin"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/colorLightGreen"
+            android:padding="5dp"
+            android:text="@string/stub_venue_rating"
+            android:textSize="@dimen/large_text_size" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

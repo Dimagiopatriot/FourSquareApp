@@ -133,6 +133,12 @@
             android:text="@string/tips"
             android:textSize="@dimen/large_text_size" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tipsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin" />
+
     </LinearLayout>
 
 </ScrollView>
