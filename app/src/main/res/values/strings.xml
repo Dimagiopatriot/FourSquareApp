@@ -6,8 +6,10 @@
 
     <!-- For seeing layout elements while develop-->
     <string name="stub_venue_name">Stub Name</string>
-    <string name="stub_venue_category_and_price">Stub category, $$</string>
-    <string name="stub_venue_address">0.1 km, Stub Address</string>
+    <string name="stub_venue_category">Stub category,</string>
+    <string name="stub_price">$$</string>
+    <string name="stub_venue_address">Stub Address</string>
+    <string name="stub_venue_distance">0.1 km,</string>
     <string name="stub_venue_description">Description....</string>
     <string name="stub_venue_rating">3.5</string>
     <string name="stub_tip">So tasty coffee. You should visit it!!!</string>

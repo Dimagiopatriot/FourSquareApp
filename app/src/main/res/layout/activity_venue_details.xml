@@ -20,22 +20,19 @@
                 android:id="@+id/venueFirstPhoto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@color/colorLightGreen" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/venueSecondPhoto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@color/colorAmber" />
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/venueThirdPhoto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@color/colorOrange" />
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -46,7 +43,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
-            android:background="@color/colorOrange"
             android:padding="@dimen/margin"
             android:text="@string/stub_venue_rating"
             android:textSize="@dimen/large_text_size" />
@@ -78,7 +74,7 @@
                 android:layout_below="@+id/venueNameDetails"
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginStart="@dimen/margin"
-                android:text="@string/stub_venue_category_and_price"
+                android:text="@string/stub_venue_category"
                 android:textSize="@dimen/small_text_size" />
 
             <TextView
@@ -136,7 +132,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/tipsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin" />
 
     </LinearLayout>
