@@ -20,4 +20,5 @@ public interface Constants {
 
     int ICON_SIZE = 100;
     int SCALE = 10;
+    int KILOMETER_IN_METERS = 1000;
 }
