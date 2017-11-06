@@ -29,6 +29,10 @@ public class Venue {
     private String description;
     private Wrapper<Photo> photoWrapper;
 
+    public Venue(){
+        setPrimaryCategory();
+    }
+
     public String getId() {
         return id;
     }

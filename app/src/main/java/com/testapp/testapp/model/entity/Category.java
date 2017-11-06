@@ -82,7 +82,7 @@ public class Category {
                 '}';
     }
 
-    class Icon{
+    public class Icon{
 
         @SerializedName("prefix")
         private String urlPrefix;

@@ -17,7 +17,23 @@ public class Tip {
     @SerializedName("user")
     private User user;
 
-    class Like {
+    public String getTipText() {
+        return tipText;
+    }
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public Like getTipLikes() {
+        return tipLikes;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public class Like {
         @SerializedName("count")
         private int count;
 

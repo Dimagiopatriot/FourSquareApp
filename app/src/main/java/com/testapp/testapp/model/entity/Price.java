@@ -61,10 +61,6 @@ public class Price {
 
     @Override
     public String toString() {
-        return "Price{" +
-                "tier=" + tier +
-                ", message='" + message + '\'' +
-                ", currency='" + currency + '\'' +
-                '}';
+        return message + " " + currency;
     }
 }

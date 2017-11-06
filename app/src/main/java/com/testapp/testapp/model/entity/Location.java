@@ -14,6 +14,8 @@ public class Location {
     private double latitude;
     @SerializedName("lng")
     private double longitude;
+    @SerializedName("distance")
+    private int distance;
 
     public String getAddress() {
         return address;
@@ -39,6 +41,14 @@ public class Location {
         this.longitude = longitude;
     }
 
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,6 +58,7 @@ public class Location {
 
         if (Double.compare(location.latitude, latitude) != 0) return false;
         if (Double.compare(location.longitude, longitude) != 0) return false;
+        if (distance != location.distance) return false;
         return address != null ? address.equals(location.address) : location.address == null;
     }
 
@@ -60,6 +71,7 @@ public class Location {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(longitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + distance;
         return result;
     }
 
@@ -69,6 +81,7 @@ public class Location {
                 "address='" + address + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", distance=" + distance +
                 '}';
     }
 }
