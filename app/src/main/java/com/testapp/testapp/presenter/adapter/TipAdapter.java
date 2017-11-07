@@ -65,7 +65,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.Holder> {
             super(itemView);
             itemView.setOnClickListener(this);
             image = (ImageView) itemView.findViewById(R.id.tipImage);
-            userAvatar = (ImageView) itemView.findViewById(R.id.tipUserIcon);
+            userAvatar = (ImageView) itemView.findViewById(R.id.tipUserAvatar);
             text = (TextView) itemView.findViewById(R.id.tipText);
             userName = (TextView) itemView.findViewById(R.id.tipUserName);
             likes = (TextView) itemView.findViewById(R.id.tipLikes);

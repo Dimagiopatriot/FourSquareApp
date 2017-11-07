@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.testapp.testapp.R;
-import com.testapp.testapp.VenueDetailsActivity;
+import com.testapp.testapp.view.VenueDetailsActivity;
 import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Venue;
 import com.testapp.testapp.model.utils.DistanceFormatter;
@@ -46,6 +46,7 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
     public void onBindViewHolder(Holder holder, int position) {
         Venue currentVenue = venues.get(position);
 
+        holder.setVenueId(currentVenue.getId());
         holder.name.setText(currentVenue.getName());
         holder.category.setText(currentVenue.getPrimaryCategory().getName());
         holder.address.setText(currentVenue.getLocation().getAddress());
@@ -82,8 +83,13 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
     class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView venueImage;
-
         TextView name, category, address, price, distance, rating;
+
+        String venueId;
+
+        public void setVenueId(String venueId) {
+            this.venueId = venueId;
+        }
 
         public Holder(View itemView) {
             super(itemView);
@@ -100,6 +106,9 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), VenueDetailsActivity.class);
+            String nameForTitle = name.getText().toString();
+            intent.putExtra("title", nameForTitle);
+            intent.putExtra("venueId", venueId);
             v.getContext().startActivity(intent);
         }
     }
