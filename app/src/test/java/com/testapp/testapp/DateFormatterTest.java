@@ -1,6 +1,6 @@
 package com.testapp.testapp;
 
-import com.testapp.testapp.model.utils.DateFormatter;
+import com.testapp.testapp.presenter.utils.DateFormatter;
 
 import org.junit.Test;
 
