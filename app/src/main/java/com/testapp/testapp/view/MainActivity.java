@@ -1,4 +1,4 @@
-package com.testapp.testapp;
+package com.testapp.testapp.view;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,20 +6,32 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.*;
-import com.google.android.gms.location.*;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.testapp.testapp.R;
+import com.testapp.testapp.view.utils.PlayServicesUtils;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
@@ -27,18 +39,25 @@ public class MainActivity extends AppCompatActivity implements
     private final int REQUEST_CHECK_SETTINGS = 1;
 
     GoogleApiClient googleApiClient;
-    Location lastLocation;
+    Location lastKnownLocation;
     LocationRequest locationRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.testapp.testapp.R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(toolbar);
         initializeGoogleAdiClient();
         connectGoogleApiClient();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Verifies the proper version of Google Play Services exists on the device.
+        PlayServicesUtils.checkGooglePlayServices(this);
     }
 
     private void initializeGoogleAdiClient() {
@@ -91,13 +110,13 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onLocationChanged(Location location) {
-        lastLocation = location;
+        lastKnownLocation = location;
     }
 
     private LocationSettingsRequest.Builder settingsLocationRequest() {
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000); // 10 seconds
-        locationRequest.setFastestInterval(1000); // 1 second
+        locationRequest.setInterval(2000); // 2 seconds
+        locationRequest.setFastestInterval(500); // 0.5 second
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
@@ -155,22 +174,22 @@ public class MainActivity extends AppCompatActivity implements
             return;
         } else {
             /*Getting the location after aquiring location service*/
-            lastLocation = LocationServices.FusedLocationApi.getLastLocation(
+            lastKnownLocation = LocationServices.FusedLocationApi.getLastLocation(
                     googleApiClient);
 
-            if (lastLocation == null) {
+            if (lastKnownLocation == null) {
                 /*if there is no last known location. Which means the device has no data for the location currently.
                 * So we will get the current location.
                 * For this we'll implement Location Listener and override onLocationChanged*/
                 Log.i("Current Location", "No data for location found");
-                checkGoogleApiClientConnnection();
+                checkGoogleApiClientConnection();
 
                 LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, MainActivity.this);
             }
         }
     }
 
-    private void checkGoogleApiClientConnnection() {
+    private void checkGoogleApiClientConnection() {
         if (!googleApiClient.isConnected())
             googleApiClient.connect();
     }
@@ -199,15 +218,25 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+
+        SearchView searchView = (SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                /*Presenter presenter = new VenuesPresenter(this, lastKnownLocation, query);
+                presenter.getResponse();*/
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_search){
-            //Todo launch finding query via retrofit
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 }
