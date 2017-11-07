@@ -1,4 +1,4 @@
-package com.testapp.testapp.model.utils;
+package com.testapp.testapp.presenter.utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,12 +32,20 @@ public class RequestParametersHolder {
         return requestParameters;
     }
 
-    public Map<String, String> getSearchVenuesParams(double longitude, double latitude, String query){
+    public Map<String, String> getSearchVenuesParamsWithLocation(double longitude, double latitude, String query){
         Map<String, String> searchRequestParams = new HashMap<>();
         searchRequestParams.putAll(requestParameters);
         searchRequestParams.put(LONGITUDE_AND_LATITUDE_FIELD, String.valueOf(longitude) + "," + String.valueOf(latitude));
         searchRequestParams.put(SEARCH_QUERY_FIELD, query);
         searchRequestParams.put(API_INTENT_FIELD, "checkin");
+        return searchRequestParams;
+    }
+
+    public Map<String, String> getSearchVenuesParamsWithoutLocation(String query){
+        Map<String, String> searchRequestParams = new HashMap<>();
+        searchRequestParams.putAll(requestParameters);
+        searchRequestParams.put(SEARCH_QUERY_FIELD, query);
+        searchRequestParams.put(API_INTENT_FIELD, "global");
         return searchRequestParams;
     }
 

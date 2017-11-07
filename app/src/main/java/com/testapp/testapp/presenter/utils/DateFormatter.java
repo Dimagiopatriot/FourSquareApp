@@ -1,4 +1,4 @@
-package com.testapp.testapp.model.utils;
+package com.testapp.testapp.presenter.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
