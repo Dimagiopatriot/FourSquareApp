@@ -2,6 +2,8 @@ package com.testapp.testapp.model.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by troll on 04.11.2017.
  */
@@ -10,6 +12,8 @@ public class Location {
 
     @SerializedName("address")
     private String address;
+    @SerializedName("formattedAddress")
+    private List<String> formattedAddress;
     @SerializedName("lat")
     private double latitude;
     @SerializedName("lng")
@@ -18,35 +22,22 @@ public class Location {
     private int distance;
 
     public String getAddress() {
+        if (address == null) {
+            return formattedAddress.get(0);
+        }
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
     public int getDistance() {
         return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
     }
 
     @Override
@@ -59,7 +50,9 @@ public class Location {
         if (Double.compare(location.latitude, latitude) != 0) return false;
         if (Double.compare(location.longitude, longitude) != 0) return false;
         if (distance != location.distance) return false;
-        return address != null ? address.equals(location.address) : location.address == null;
+        if (address != null ? !address.equals(location.address) : location.address != null)
+            return false;
+        return formattedAddress != null ? formattedAddress.equals(location.formattedAddress) : location.formattedAddress == null;
     }
 
     @Override
@@ -67,6 +60,7 @@ public class Location {
         int result;
         long temp;
         result = address != null ? address.hashCode() : 0;
+        result = 31 * result + (formattedAddress != null ? formattedAddress.hashCode() : 0);
         temp = Double.doubleToLongBits(latitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(longitude);
@@ -79,6 +73,7 @@ public class Location {
     public String toString() {
         return "Location{" +
                 "address='" + address + '\'' +
+                ", formattedAddress=" + formattedAddress +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", distance=" + distance +

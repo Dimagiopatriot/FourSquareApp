@@ -19,15 +19,15 @@ import retrofit2.http.QueryMap;
 
 public interface VenueApi {
 
-    @GET("/venues/search")
+    @GET("venues/search")
     Call<Response<ResponseSearchVenues>> searchVenues(@QueryMap Map<String, String> params);
 
-    @GET("/venues/{venueId}")
+    @GET("venues/{venueId}")
     Call<Response<ResponseVenue>> venueDetails(@Path("venueId") String id, @QueryMap Map<String, String> params);
 
-    @GET("/venues/{venueId}/photos")
+    @GET("venues/{venueId}/photos")
     Call<Response<ResponsePhotos>> venuePhotos(@Path("venueId") String id, @QueryMap Map<String, String> params);
 
-    @GET("/venues/{venueId}/tips")
+    @GET("venues/{venueId}/tips")
     Call<Response<ResponseTips>> venueTips(@Path("venueId") String id, @QueryMap Map<String, String> params);
 }

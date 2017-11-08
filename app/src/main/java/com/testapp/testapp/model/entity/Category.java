@@ -38,16 +38,8 @@ public class Category {
         return isPrimaryCategory;
     }
 
-    public void setPrimaryCategory(boolean primaryCategory) {
-        isPrimaryCategory = primaryCategory;
-    }
-
     public Icon getCategoryIcon() {
         return categoryIcon;
-    }
-
-    public void setCategoryIcon(Icon categoryIcon) {
-        this.categoryIcon = categoryIcon;
     }
 
     @Override

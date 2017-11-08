@@ -41,10 +41,6 @@ public class Tip {
             return count;
         }
 
-        public void setCount(int count) {
-            this.count = count;
-        }
-
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;

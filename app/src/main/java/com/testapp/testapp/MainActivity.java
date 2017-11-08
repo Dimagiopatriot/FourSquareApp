@@ -1,6 +1,5 @@
-package com.testapp.testapp.view;
+package com.testapp.testapp;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -11,11 +10,13 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -30,7 +31,13 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
-import com.testapp.testapp.R;
+import com.testapp.testapp.model.entity.Venue;
+import com.testapp.testapp.presenter.Presenter;
+import com.testapp.testapp.presenter.VenuesPresenter;
+import com.testapp.testapp.presenter.adapter.CommonRecyclerViewAdapter;
+import com.testapp.testapp.presenter.adapter.VenueAdapter;
+import com.testapp.testapp.view.AdapterView;
+import com.testapp.testapp.view.CustomListView;
 import com.testapp.testapp.view.utils.PlayServicesUtils;
 
 public class MainActivity extends AppCompatActivity implements
@@ -42,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements
     Location lastKnownLocation;
     LocationRequest locationRequest;
 
+    ProgressBar venuesLoading;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(toolbar);
+
+        venuesLoading = (ProgressBar) findViewById(R.id.venuesLoading);
+        recyclerView = (RecyclerView) findViewById(R.id.searchVenuesRecyclerView);
         initializeGoogleAdiClient();
         connectGoogleApiClient();
     }
@@ -115,8 +128,8 @@ public class MainActivity extends AppCompatActivity implements
 
     private LocationSettingsRequest.Builder settingsLocationRequest() {
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(2000); // 2 seconds
-        locationRequest.setFastestInterval(500); // 0.5 second
+        locationRequest.setInterval(10000); // 10 seconds
+        locationRequest.setFastestInterval(1000); // 1 second
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
@@ -161,9 +174,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void getLocation() {
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -225,8 +237,12 @@ public class MainActivity extends AppCompatActivity implements
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                /*Presenter presenter = new VenuesPresenter(this, lastKnownLocation, query);
-                presenter.getResponse();*/
+
+                CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder> venueAdapter = new VenueAdapter();
+                CustomListView<Venue> customListView = new AdapterView<>(getApplicationContext(), venuesLoading, venueAdapter, recyclerView);
+
+                Presenter presenter = new VenuesPresenter(customListView, lastKnownLocation, query);
+                presenter.getResponse();
                 return false;
             }
 
@@ -237,6 +253,4 @@ public class MainActivity extends AppCompatActivity implements
         });
         return true;
     }
-
-
 }

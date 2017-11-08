@@ -38,8 +38,10 @@ public class VenueDetailsPresenter implements Presenter, Callback<Response<Respo
     @Override
     public void onResponse(@NonNull Call<Response<ResponseVenue>> call, @NonNull retrofit2.Response<Response<ResponseVenue>> response) {
         Response<ResponseVenue> commonResponse = response.body();
-        if (commonResponse != null){
-            view.onSuccessResponse(commonResponse.getResponse().getVenue());
+        if (commonResponse != null) {
+            Venue responseVenue = commonResponse.getResponse().getVenue();
+            responseVenue.setPrimaryCategory();
+            view.onSuccessResponse(responseVenue);
         }
         view.onEndRequest();
     }

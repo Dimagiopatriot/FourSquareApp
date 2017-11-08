@@ -11,27 +11,31 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.testapp.testapp.R;
-import com.testapp.testapp.view.VenueDetailsActivity;
+import com.testapp.testapp.VenueDetailsActivity;
 import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Venue;
+import com.testapp.testapp.model.utils.Constants;
 import com.testapp.testapp.model.utils.DistanceFormatter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by troll on 05.11.2017.
  */
 
-public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
+public class VenueAdapter extends CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder> {
 
-    private List<Venue> venues;
+    private List<Venue> venues = new ArrayList<>();
 
-    public void addVenues(List<Venue> venues){
-        this.venues.addAll(venues);
+    @Override
+    public void addItems(List<Venue> items) {
+        venues.addAll(items);
         notifyDataSetChanged();
     }
 
-    public void clearVenues(){
+    @Override
+    public void clearItems() {
         venues.clear();
         notifyDataSetChanged();
     }
@@ -47,14 +51,27 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
         Venue currentVenue = venues.get(position);
 
         holder.setVenueId(currentVenue.getId());
+        holder.setLatitude(currentVenue.getLocation().getLatitude());
+        holder.setLongitude(currentVenue.getLocation().getLongitude());
         holder.name.setText(currentVenue.getName());
         holder.category.setText(currentVenue.getPrimaryCategory().getName());
         holder.address.setText(currentVenue.getLocation().getAddress());
-        holder.price.setText(currentVenue.getPrice().toString());
-        holder.distance.setText(DistanceFormatter.fromMetersToKilometersFormat(currentVenue.getLocation().getDistance()));
-
-        holder.rating.setText(String.valueOf(currentVenue.getRating()));
-        holder.rating.setBackgroundColor(Color.parseColor("#" + currentVenue.getRatingColor()));
+        if (currentVenue.getPrice() != null)
+            holder.price.setText(currentVenue.getPrice().toString());
+        else{
+            holder.price.setVisibility(View.INVISIBLE);
+        }
+        if (currentVenue.getLocation().getDistance() != 0.) {
+            holder.distance.setText(DistanceFormatter.fromMetersToKilometersFormat(currentVenue.getLocation().getDistance()));
+        } else {
+            holder.distance.setVisibility(View.GONE);
+        }
+        if (currentVenue.getRatingColor() != null) {
+            holder.rating.setText(String.valueOf(currentVenue.getRating()));
+            holder.rating.setBackgroundColor(Color.parseColor("#" + currentVenue.getRatingColor()));
+        } else {
+            holder.rating.setVisibility(View.INVISIBLE);
+        }
         checkVenuePhotos(holder, currentVenue);
     }
 
@@ -65,7 +82,7 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
             Photo venuePhoto = venue.getPhotoWrapper().getItems().get(0);
             if (venuePhoto != null){
                 venuePhoto.zoomOutWidth();
-                venuePhoto.zoomOutHeiht();
+                venuePhoto.zoomOutHeight();
                 setVenueImage(holder, venuePhoto.toString());
             }
         }
@@ -80,12 +97,21 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
         return venues.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView venueImage;
         TextView name, category, address, price, distance, rating;
 
-        String venueId;
+        private String venueId;
+        private double latitude, longitude;
+
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
 
         public void setVenueId(String venueId) {
             this.venueId = venueId;
@@ -107,8 +133,10 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.Holder> {
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), VenueDetailsActivity.class);
             String nameForTitle = name.getText().toString();
-            intent.putExtra("title", nameForTitle);
-            intent.putExtra("venueId", venueId);
+            intent.putExtra(Constants.INTENT_TITLE, nameForTitle);
+            intent.putExtra(Constants.INTENT_VENUE_ID, venueId);
+            intent.putExtra(Constants.INTENT_LATITUDE, latitude);
+            intent.putExtra(Constants.INTENT_LONGITUDE, longitude);
             v.getContext().startActivity(intent);
         }
     }

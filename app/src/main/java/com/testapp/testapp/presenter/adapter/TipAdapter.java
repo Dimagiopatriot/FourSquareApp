@@ -10,31 +10,37 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.testapp.testapp.R;
+import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Tip;
+import com.testapp.testapp.model.utils.Constants;
+import com.testapp.testapp.model.utils.SizeChanger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by troll on 06.11.2017.
  */
 
-public class TipAdapter extends RecyclerView.Adapter<TipAdapter.Holder> {
+public class TipAdapter extends CommonRecyclerViewAdapter<Tip, TipAdapter.Holder> {
 
-    private List<Tip> tips;
+    private List<Tip> tips = new ArrayList<>();
 
-    public void addVenues(List<Tip> tips){
-        this.tips.addAll(tips);
+    @Override
+    public void addItems(List<Tip> items) {
+        tips.addAll(items);
         notifyDataSetChanged();
     }
 
-    public void clearVenues(){
+    @Override
+    public void clearItems() {
         tips.clear();
         notifyDataSetChanged();
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.tip_item_row, parent,false);
+        View row = LayoutInflater.from(parent.getContext()).inflate(R.layout.tip_item_row, parent, false);
         return new Holder(row);
     }
 
@@ -43,12 +49,20 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.Holder> {
         Tip tip = tips.get(position);
 
         holder.text.setText(tip.getTipText());
-        holder.likes.setText(tip.getTipLikes().getCount());
+        holder.likes.setText(String.valueOf(tip.getTipLikes().getCount()));
         holder.userName.setText(tip.getUser().getUserFirstName());
 
         Context context = holder.itemView.getContext();
-        Picasso.with(context).load(tip.getPhoto().toString()).into(holder.image);
-        Picasso.with(context).load(tip.getUser().getUserPhoto().toString()).into(holder.image);
+        if (tip.getPhoto() != null) {
+            Photo tipPhoto = tip.getPhoto();
+            tipPhoto.setWidth(SizeChanger.zoomOut(tipPhoto.getWidth(), 5));
+            tipPhoto.setHeight(SizeChanger.zoomOut(tipPhoto.getHeight(), 5));
+            Picasso.with(context).load(tipPhoto.toString()).into(holder.image);
+        }
+        Photo userAvatar = tip.getUser().getUserPhoto();
+        userAvatar.setWidth(40);
+        userAvatar.setHeight(40);
+        Picasso.with(context).load(userAvatar.toString()).into(holder.userAvatar);
     }
 
     @Override
@@ -56,7 +70,7 @@ public class TipAdapter extends RecyclerView.Adapter<TipAdapter.Holder> {
         return tips.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView image, userAvatar;
         TextView text, userName, likes;

@@ -13,12 +13,8 @@ public class ResponsePhotos {
     @SerializedName("photos")
     private Wrapper<Photo> photoWrapper;
 
-    public Wrapper getPhotoWrapper() {
+    public Wrapper<Photo> getPhotoWrapper() {
         return photoWrapper;
-    }
-
-    public void setPhotoWrapper(Wrapper<Photo> wrapper) {
-        this.photoWrapper = wrapper;
     }
 
     @Override

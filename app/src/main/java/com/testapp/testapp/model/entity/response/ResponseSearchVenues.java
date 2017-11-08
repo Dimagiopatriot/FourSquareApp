@@ -18,10 +18,6 @@ public class ResponseSearchVenues {
         return venues;
     }
 
-    public void setVenues(List<Venue> venues) {
-        this.venues = venues;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

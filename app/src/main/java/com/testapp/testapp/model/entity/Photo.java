@@ -19,14 +19,6 @@ public class Photo {
     @SerializedName("height")
     private int height;
 
-    public void setUrlPrefix(String urlPrefix) {
-        this.urlPrefix = urlPrefix;
-    }
-
-    public void setUrlSuffix(String urlSuffix) {
-        this.urlSuffix = urlSuffix;
-    }
-
     public void setWidth(int width) {
         this.width = width;
     }
@@ -35,19 +27,19 @@ public class Photo {
         this.height = height;
     }
 
-    public void zoomInWidth(){
-        width = SizeChanger.zoomIn(width, Constants.SCALE);
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public void zoomOutWidth(){
         width = SizeChanger.zoomOut(width, Constants.SCALE);
     }
 
-    public void zoomInHeiht(){
-        height = SizeChanger.zoomIn(height, Constants.SCALE);
-    }
-
-    public void zoomOutHeiht(){
+    public void zoomOutHeight(){
         height = SizeChanger.zoomOut(height, Constants.SCALE);
     }
 

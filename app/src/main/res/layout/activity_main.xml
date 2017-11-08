@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.testapp.testapp.view.MainActivity">
+    tools:context="com.testapp.testapp.MainActivity">
 
     <include
         android:id="@+id/toolbar_actionbar"
@@ -15,5 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_actionbar" />
+
+    <ProgressBar
+        android:id="@+id/venuesLoading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/toolbar_actionbar"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

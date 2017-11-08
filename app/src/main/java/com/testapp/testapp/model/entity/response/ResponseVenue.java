@@ -16,10 +16,6 @@ public class ResponseVenue {
         return venue;
     }
 
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

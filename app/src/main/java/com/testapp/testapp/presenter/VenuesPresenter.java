@@ -2,13 +2,16 @@ package com.testapp.testapp.presenter;
 
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.testapp.testapp.model.entity.Venue;
 import com.testapp.testapp.model.entity.response.Response;
 import com.testapp.testapp.model.entity.response.ResponseSearchVenues;
 import com.testapp.testapp.model.rest.RestApiManager;
 import com.testapp.testapp.presenter.utils.RequestParametersHolder;
 import com.testapp.testapp.view.CustomListView;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -20,12 +23,12 @@ import retrofit2.Callback;
 
 public class VenuesPresenter implements Callback<Response<ResponseSearchVenues>>, Presenter {
 
-    private CustomListView view;
+    private CustomListView<Venue> view;
 
     private Location lastKnownLocation;
     private String query;
 
-    public VenuesPresenter(CustomListView view, Location lastKnownLocation, String query) {
+    public VenuesPresenter(CustomListView<Venue> view, Location lastKnownLocation, String query) {
         this.view = view;
         this.lastKnownLocation = lastKnownLocation;
         this.query = query;
@@ -55,13 +58,22 @@ public class VenuesPresenter implements Callback<Response<ResponseSearchVenues>>
         Response<ResponseSearchVenues> commonResponse = response.body();
         if (commonResponse != null) {
             ResponseSearchVenues responseSearchVenues = commonResponse.getResponse();
-            view.onSuccessResponse(responseSearchVenues.getVenues());
+            List<Venue> responseVenues = responseSearchVenues.getVenues();
+            setPrimaryCategoryForVenues(responseVenues);
+            view.onSuccessResponse(responseVenues);
         }
         view.onEndRequest();
+    }
+
+    private void setPrimaryCategoryForVenues(@NonNull List<Venue> venues) {
+        for (Venue venue : venues) {
+            venue.setPrimaryCategory();
+        }
     }
 
     @Override
     public void onFailure(@NonNull Call<Response<ResponseSearchVenues>> call, @NonNull Throwable t) {
         view.onFailureRequest();
+        Log.e("error response", t.getMessage());
     }
 }

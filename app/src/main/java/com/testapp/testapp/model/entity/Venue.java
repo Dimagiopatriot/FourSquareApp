@@ -29,10 +29,6 @@ public class Venue {
     private String description;
     private Wrapper<Photo> photoWrapper;
 
-    public Venue(){
-        setPrimaryCategory();
-    }
-
     public String getId() {
         return id;
     }
@@ -47,14 +43,6 @@ public class Venue {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
     }
 
     public Category getPrimaryCategory() {
@@ -74,48 +62,24 @@ public class Venue {
         return price;
     }
 
-    public void setPrice(Price price) {
-        this.price = price;
-    }
-
     public Location getLocation() {
         return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public double getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
     public String getRatingColor() {
         return ratingColor;
-    }
-
-    public void setRatingColor(String ratingColor) {
-        this.ratingColor = ratingColor;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Wrapper<Photo> getPhotoWrapper() {
         return photoWrapper;
-    }
-
-    public void setPhotoWrapper(Wrapper<Photo> photoWrapper) {
-        this.photoWrapper = photoWrapper;
     }
 
     @Override

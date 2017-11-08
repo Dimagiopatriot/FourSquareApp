@@ -13,20 +13,8 @@ public class Response<T>  {
     @SerializedName("response")
     private T response;
 
-    public Meta getResponseMetaData() {
-        return responseMetaData;
-    }
-
-    public void setResponseMetaData(Meta responseMetaData) {
-        this.responseMetaData = responseMetaData;
-    }
-
     public T getResponse() {
         return response;
-    }
-
-    public void setResponse(T response) {
-        this.response = response;
     }
 
     @Override
@@ -59,14 +47,6 @@ public class Response<T>  {
     class Meta {
         @SerializedName("code")
         private int responseCode;
-
-        public int getResponseCode() {
-            return responseCode;
-        }
-
-        public void setResponseCode(int responseCode) {
-            this.responseCode = responseCode;
-        }
 
         @Override
         public boolean equals(Object o) {

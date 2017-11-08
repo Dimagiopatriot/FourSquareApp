@@ -2,6 +2,7 @@ package com.testapp.testapp.presenter;
 
 import android.support.annotation.NonNull;
 
+import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.response.Response;
 import com.testapp.testapp.model.entity.response.ResponsePhotos;
 import com.testapp.testapp.model.rest.RestApiManager;
@@ -17,10 +18,10 @@ import retrofit2.Callback;
 
 public class PhotosPresenter implements Presenter, Callback<Response<ResponsePhotos>> {
 
-    private CustomListView viewForList;
+    private CustomListView<Photo> viewForList;
     private String venueId;
 
-    public PhotosPresenter(CustomListView viewForList, String venueId) {
+    public PhotosPresenter(CustomListView<Photo> viewForList, String venueId) {
         this.viewForList = viewForList;
         this.venueId = venueId;
     }
@@ -37,7 +38,8 @@ public class PhotosPresenter implements Presenter, Callback<Response<ResponsePho
     public void onResponse(@NonNull Call<Response<ResponsePhotos>> call, @NonNull retrofit2.Response<Response<ResponsePhotos>> response) {
         Response<ResponsePhotos> commonResponse = response.body();
         if (commonResponse != null){
-            viewForList.onSuccessResponse(commonResponse.getResponse().getPhotoWrapper().getItems());
+            ResponsePhotos responsePhotos = commonResponse.getResponse();
+            viewForList.onSuccessResponse(responsePhotos.getPhotoWrapper().getItems());
         }
     }
 

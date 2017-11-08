@@ -2,6 +2,7 @@ package com.testapp.testapp.presenter;
 
 import android.support.annotation.NonNull;
 
+import com.testapp.testapp.model.entity.Tip;
 import com.testapp.testapp.model.entity.response.Response;
 import com.testapp.testapp.model.entity.response.ResponseTips;
 import com.testapp.testapp.model.rest.RestApiManager;
@@ -17,11 +18,11 @@ import retrofit2.Callback;
 
 public class TipsPresenter implements Presenter, Callback<Response<ResponseTips>> {
 
-    private CustomListView viewForList;
+    private CustomListView<Tip> viewForList;
 
     private String venueId;
 
-    public TipsPresenter(CustomListView viewForList, String venueId) {
+    public TipsPresenter(CustomListView<Tip> viewForList, String venueId) {
         this.viewForList = viewForList;
         this.venueId = venueId;
     }
@@ -38,7 +39,7 @@ public class TipsPresenter implements Presenter, Callback<Response<ResponseTips>
     @Override
     public void onResponse(@NonNull Call<Response<ResponseTips>> call, @NonNull retrofit2.Response<Response<ResponseTips>> response) {
         Response<ResponseTips> commonResponse = response.body();
-        if (commonResponse != null){
+        if (commonResponse != null) {
             ResponseTips responseTips = commonResponse.getResponse();
             viewForList.onSuccessResponse(responseTips.getTipsWrapper().getItems());
         }

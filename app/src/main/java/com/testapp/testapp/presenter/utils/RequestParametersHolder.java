@@ -35,7 +35,7 @@ public class RequestParametersHolder {
     public Map<String, String> getSearchVenuesParamsWithLocation(double longitude, double latitude, String query){
         Map<String, String> searchRequestParams = new HashMap<>();
         searchRequestParams.putAll(requestParameters);
-        searchRequestParams.put(LONGITUDE_AND_LATITUDE_FIELD, String.valueOf(longitude) + "," + String.valueOf(latitude));
+        searchRequestParams.put(LONGITUDE_AND_LATITUDE_FIELD, String.valueOf(latitude) + "," + String.valueOf(longitude));
         searchRequestParams.put(SEARCH_QUERY_FIELD, query);
         searchRequestParams.put(API_INTENT_FIELD, "checkin");
         return searchRequestParams;

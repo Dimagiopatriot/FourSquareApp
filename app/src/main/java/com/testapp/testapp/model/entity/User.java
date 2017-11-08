@@ -17,19 +17,8 @@ public class User {
         return userFirstName;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
     public Photo getUserPhoto() {
         return userPhoto;
-    }
-
-    public void setUserPhoto(Photo userPhoto) {
-        this.userPhoto = userPhoto;
-        //API don`t return width and height for user avatar
-        this.userPhoto.setWidth(100);
-        this.userPhoto.setHeight(100);
     }
 
     @Override

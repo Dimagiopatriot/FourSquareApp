@@ -17,10 +17,6 @@ public class ResponseTips {
         return tipsWrapper;
     }
 
-    public void setTipsWrapper(Wrapper<Tip> tipsWrapper) {
-        this.tipsWrapper = tipsWrapper;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

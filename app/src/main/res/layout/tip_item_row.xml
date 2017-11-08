@@ -11,16 +11,17 @@
         <ImageView
             android:id="@+id/tipImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin" />
 
         <TextView
             android:id="@+id/tipText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tipImage"
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginStart="@dimen/margin"
             android:layout_marginTop="@dimen/margin"
-            android:text="@string/stub_tip"
             android:textSize="@dimen/medium_text_size" />
 
         <ImageView
@@ -28,9 +29,7 @@
             android:layout_width="@dimen/tip_user_icon"
             android:layout_height="@dimen/tip_user_icon"
             android:layout_below="@+id/tipText"
-            android:layout_marginLeft="@dimen/margin"
-            android:layout_marginStart="@dimen/margin"
-            android:layout_marginTop="@dimen/margin" />
+            android:layout_margin="@dimen/margin" />
 
         <TextView
             android:id="@+id/tipUserName"
@@ -42,7 +41,6 @@
             android:layout_marginTop="@dimen/margin"
             android:layout_toEndOf="@+id/tipUserAvatar"
             android:layout_toRightOf="@+id/tipUserAvatar"
-            android:text="Test Test"
             android:textSize="@dimen/medium_text_size" />
 
         <TextView
@@ -57,7 +55,6 @@
             android:layout_marginTop="@dimen/margin"
             android:drawableEnd="@drawable/ic_like"
             android:drawableRight="@drawable/ic_like"
-            android:text="123"
             android:textSize="@dimen/medium_text_size" />
 
     </RelativeLayout>

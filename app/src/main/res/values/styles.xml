@@ -4,6 +4,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="searchViewStyle">@style/AppSearchViewStyle</item>
     </style>
+
     <style name="AppSearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:textCursorDrawable">@drawable/white_cursor</item>
         <item name="queryBackground">@android:color/transparent</item>

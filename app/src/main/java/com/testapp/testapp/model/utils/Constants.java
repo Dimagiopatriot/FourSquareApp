@@ -6,7 +6,7 @@ package com.testapp.testapp.model.utils;
 
 public interface Constants {
 
-    String BASE_URL = "https://api.foursquare.com/v2";
+    String BASE_URL = "https://api.foursquare.com/v2/";
     String CLIENT_ID_VALUE = "DA2YIVUIZ5TUFRLEXNWZR210TFJRNY2CVK5PEHEZZWS2PSSS";
     String CLIENT_SECRET_VALUE = "PP4ZMJF04X3GXHSTXGYYVKRA3PUPWI00ZUG2PLZS3JPSGJZJ";
 
@@ -17,6 +17,11 @@ public interface Constants {
     String LIMIT_FIELD = "limit";
     String CLIENT_ID_FIELD = "client_id";
     String CLIENT_SECRET_FIELD = "client_secret";
+
+    String INTENT_TITLE = "title";
+    String INTENT_VENUE_ID = "venueId";
+    String INTENT_LATITUDE = "latitude";
+    String INTENT_LONGITUDE = "longitude";
 
     int ICON_SIZE = 100;
     int SCALE = 10;

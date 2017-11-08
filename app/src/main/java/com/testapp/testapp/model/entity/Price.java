@@ -15,30 +15,6 @@ public class Price {
     @SerializedName("currency")
     private String currency;
 
-    public int getTier() {
-        return tier;
-    }
-
-    public void setTier(int tier) {
-        this.tier = tier;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
