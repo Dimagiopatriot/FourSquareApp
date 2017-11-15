@@ -17,10 +17,6 @@ public class Wrapper<T> {
         return items;
     }
 
-    public void setItems(List<T> items) {
-        this.items = items;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
