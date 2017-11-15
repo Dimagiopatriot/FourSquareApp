@@ -21,7 +21,8 @@ public class PlayServicesUtils {
             case ConnectionResult.SERVICE_INVALID:
             case ConnectionResult.SERVICE_MISSING:
             case ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED:
-                Dialog dialog = GooglePlayServicesUtil.getErrorDialog(googlePlayServicesCheck, activity, 0);
+                int requestCode = 0;
+                Dialog dialog = GooglePlayServicesUtil.getErrorDialog(googlePlayServicesCheck, activity, requestCode);
                 dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialogInterface) {
