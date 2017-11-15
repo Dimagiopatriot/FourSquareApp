@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso;
 import com.testapp.testapp.R;
 import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Tip;
-import com.testapp.testapp.model.utils.Constants;
 import com.testapp.testapp.model.utils.SizeChanger;
 
 import java.util.ArrayList;

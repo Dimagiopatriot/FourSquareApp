@@ -23,7 +23,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Tip;
 import com.testapp.testapp.model.entity.Venue;
-import com.testapp.testapp.model.utils.Constants;
 import com.testapp.testapp.presenter.PhotosPresenter;
 import com.testapp.testapp.presenter.Presenter;
 import com.testapp.testapp.presenter.TipsPresenter;
@@ -34,6 +33,8 @@ import com.testapp.testapp.view.AdapterView;
 import com.testapp.testapp.view.CustomItemView;
 import com.testapp.testapp.view.CustomListView;
 import com.testapp.testapp.view.PhotosView;
+
+import static com.testapp.testapp.Constants.System.*;
 
 public class VenueDetailsActivity extends AppCompatActivity implements CustomItemView<Venue>, OnMapReadyCallback {
 
@@ -47,7 +48,7 @@ public class VenueDetailsActivity extends AppCompatActivity implements CustomIte
         setUpActivityTitle();
         initMap();
 
-        venueId = getIntent().getStringExtra(Constants.INTENT_VENUE_ID);
+        venueId = getIntent().getStringExtra(INTENT_VENUE_ID);
         Presenter venueDetailsPresenter = new VenueDetailsPresenter(this, venueId);
         venueDetailsPresenter.getResponse();
 
@@ -61,7 +62,7 @@ public class VenueDetailsActivity extends AppCompatActivity implements CustomIte
     }
 
     private void setUpActivityTitle() {
-        String title = getIntent().getStringExtra(Constants.INTENT_TITLE);
+        String title = getIntent().getStringExtra(INTENT_TITLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -158,8 +159,8 @@ public class VenueDetailsActivity extends AppCompatActivity implements CustomIte
     @Override
     public void onMapReady(GoogleMap googleMap) {
         double defaultValue = 0.;
-        double latitude = getIntent().getDoubleExtra(Constants.INTENT_LATITUDE, defaultValue);
-        double longitude = getIntent().getDoubleExtra(Constants.INTENT_LONGITUDE, defaultValue);
+        double latitude = getIntent().getDoubleExtra(INTENT_LATITUDE, defaultValue);
+        double longitude = getIntent().getDoubleExtra(INTENT_LONGITUDE, defaultValue);
         int zoom = 16;
 
         float positionX = 0.0f;

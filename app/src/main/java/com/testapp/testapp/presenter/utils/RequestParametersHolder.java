@@ -3,7 +3,7 @@ package com.testapp.testapp.presenter.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.testapp.testapp.model.utils.Constants.*;
+import static com.testapp.testapp.Constants.Network.*;
 
 /**
  * Created by troll on 05.11.2017.

@@ -2,7 +2,7 @@ package com.testapp.testapp.model.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.testapp.testapp.model.utils.Constants;
+import com.testapp.testapp.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,7 +28,7 @@ public class RestApiManager {
         Gson gson = new GsonBuilder().create();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(Constants.Network.BASE_URL)
                 .build();
     }
 

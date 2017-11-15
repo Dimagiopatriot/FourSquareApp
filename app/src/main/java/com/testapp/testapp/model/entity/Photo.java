@@ -1,7 +1,7 @@
 package com.testapp.testapp.model.entity;
 
 import com.google.gson.annotations.SerializedName;
-import com.testapp.testapp.model.utils.Constants;
+import com.testapp.testapp.Constants;
 import com.testapp.testapp.model.utils.SizeChanger;
 
 /**
@@ -36,11 +36,11 @@ public class Photo {
     }
 
     public void zoomOutWidth(){
-        width = SizeChanger.zoomOut(width, Constants.SCALE);
+        width = SizeChanger.zoomOut(width, Constants.UI.SCALE);
     }
 
     public void zoomOutHeight(){
-        height = SizeChanger.zoomOut(height, Constants.SCALE);
+        height = SizeChanger.zoomOut(height,Constants.UI.SCALE);
     }
 
     @Override

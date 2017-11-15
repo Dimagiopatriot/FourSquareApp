@@ -1,7 +1,7 @@
 package com.testapp.testapp.model.entity;
 
 import com.google.gson.annotations.SerializedName;
-import com.testapp.testapp.model.utils.Constants;
+import com.testapp.testapp.Constants;
 
 /**
  * Created by troll on 04.11.2017.
@@ -71,7 +71,7 @@ public class Category {
 
         @Override
         public String toString() {
-            return urlPrefix + Constants.ICON_SIZE + urlSuffix;
+            return urlPrefix + Constants.UI.ICON_SIZE + urlSuffix;
         }
     }
 }

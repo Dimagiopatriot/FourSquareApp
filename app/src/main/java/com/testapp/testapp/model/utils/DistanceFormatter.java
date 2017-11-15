@@ -1,5 +1,7 @@
 package com.testapp.testapp.model.utils;
 
+import com.testapp.testapp.Constants;
+
 import java.util.Locale;
 
 /**
@@ -10,7 +12,7 @@ public class DistanceFormatter {
 
     public static String fromMetersToKilometersFormat(int distanceInMeters){
         int precise = 10;
-        double distanceInKilometers = (double) distanceInMeters / Constants.KILOMETER_IN_METERS;
+        double distanceInKilometers = (double) distanceInMeters / Constants.UI.KILOMETER_IN_METERS;
         distanceInKilometers = distanceInKilometers * precise;
         int roundedDistance = (int) Math.round(distanceInKilometers);
         distanceInKilometers = (double) roundedDistance / precise;

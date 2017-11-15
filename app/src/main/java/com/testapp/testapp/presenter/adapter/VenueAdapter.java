@@ -14,11 +14,13 @@ import com.testapp.testapp.R;
 import com.testapp.testapp.VenueDetailsActivity;
 import com.testapp.testapp.model.entity.Photo;
 import com.testapp.testapp.model.entity.Venue;
-import com.testapp.testapp.model.utils.Constants;
+import com.testapp.testapp.Constants;
 import com.testapp.testapp.model.utils.DistanceFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.testapp.testapp.Constants.System.*;
 
 /**
  * Created by troll on 05.11.2017.
@@ -133,10 +135,10 @@ public class VenueAdapter extends CommonRecyclerViewAdapter<Venue, VenueAdapter.
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), VenueDetailsActivity.class);
             String nameForTitle = name.getText().toString();
-            intent.putExtra(Constants.INTENT_TITLE, nameForTitle);
-            intent.putExtra(Constants.INTENT_VENUE_ID, venueId);
-            intent.putExtra(Constants.INTENT_LATITUDE, latitude);
-            intent.putExtra(Constants.INTENT_LONGITUDE, longitude);
+            intent.putExtra(INTENT_TITLE, nameForTitle);
+            intent.putExtra(INTENT_VENUE_ID, venueId);
+            intent.putExtra(INTENT_LATITUDE, latitude);
+            intent.putExtra(INTENT_LONGITUDE, longitude);
             v.getContext().startActivity(intent);
         }
     }
