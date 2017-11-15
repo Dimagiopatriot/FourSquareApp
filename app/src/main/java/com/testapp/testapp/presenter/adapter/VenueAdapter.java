@@ -105,19 +105,19 @@ public class VenueAdapter extends CommonRecyclerViewAdapter<Venue, VenueAdapter.
         private String venueId;
         private double latitude, longitude;
 
-        public void setLatitude(double latitude) {
+        void setLatitude(double latitude) {
             this.latitude = latitude;
         }
 
-        public void setLongitude(double longitude) {
+        void setLongitude(double longitude) {
             this.longitude = longitude;
         }
 
-        public void setVenueId(String venueId) {
+        void setVenueId(String venueId) {
             this.venueId = venueId;
         }
 
-        public Holder(View itemView) {
+        Holder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             venueImage = (ImageView) itemView.findViewById(R.id.venueImage);
