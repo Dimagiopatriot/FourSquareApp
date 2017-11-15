@@ -28,7 +28,8 @@ public class PhotosPresenter implements Presenter, Callback<Response<ResponsePho
 
     @Override
     public void getResponse() {
-        Call<Response<ResponsePhotos>> responseCall = new RestApiManager()
+        RestApiManager restApiManager = RestApiManager.getInstance();
+        Call<Response<ResponsePhotos>> responseCall = restApiManager
                 .getVenueApi()
                 .venuePhotos(venueId, RequestParametersHolder.getInstance().getVenuePhotosParams());
         responseCall.enqueue(this);

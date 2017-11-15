@@ -29,7 +29,8 @@ public class TipsPresenter implements Presenter, Callback<Response<ResponseTips>
 
     @Override
     public void getResponse() {
-        Call<Response<ResponseTips>> responseCall = new RestApiManager()
+        RestApiManager restApiManager = RestApiManager.getInstance();
+        Call<Response<ResponseTips>> responseCall = restApiManager
                 .getVenueApi()
                 .venueTips(venueId, RequestParametersHolder.getInstance().getCommonRequestParams());
         viewForList.onStartRequest();

@@ -13,10 +13,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestApiManager {
 
+    private static class Holder{
+        static final RestApiManager INSTANCE = new RestApiManager();
+    }
+
+    public static RestApiManager getInstance(){
+        return Holder.INSTANCE;
+    }
+
     private Retrofit retrofit;
     private VenueApi venueApi;
 
-    public RestApiManager(){
+    RestApiManager(){
         Gson gson = new GsonBuilder().create();
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))

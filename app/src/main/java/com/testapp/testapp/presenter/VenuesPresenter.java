@@ -36,7 +36,8 @@ public class VenuesPresenter implements Callback<Response<ResponseSearchVenues>>
 
     @Override
     public void getResponse() {
-        Call<Response<ResponseSearchVenues>> venuesResponseCall = new RestApiManager()
+        RestApiManager restApiManager = RestApiManager.getInstance();
+        Call<Response<ResponseSearchVenues>> venuesResponseCall = restApiManager
                 .getVenueApi()
                 .searchVenues(checkLastKnownLocation(query));
 

@@ -28,7 +28,8 @@ public class VenueDetailsPresenter implements Presenter, Callback<Response<Respo
 
     @Override
     public void getResponse() {
-        Call<Response<ResponseVenue>> call = new RestApiManager()
+        RestApiManager restApiManager = RestApiManager.getInstance();
+        Call<Response<ResponseVenue>> call = restApiManager
                 .getVenueApi()
                 .venueDetails(venueId, RequestParametersHolder.getInstance().getCommonRequestParams());
         call.enqueue(this);
