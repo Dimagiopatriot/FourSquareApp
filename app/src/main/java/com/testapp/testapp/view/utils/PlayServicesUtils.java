@@ -12,11 +12,11 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
  */
 
 public class PlayServicesUtils {
-    public static boolean checkGooglePlayServices(final Activity activity) {
+    public static void checkGooglePlayServices(final Activity activity) {
         final int googlePlayServicesCheck = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity);
         switch (googlePlayServicesCheck) {
             case ConnectionResult.SUCCESS:
-                return true;
+                return;
             case ConnectionResult.SERVICE_DISABLED:
             case ConnectionResult.SERVICE_INVALID:
             case ConnectionResult.SERVICE_MISSING:
@@ -30,6 +30,5 @@ public class PlayServicesUtils {
                 });
                 dialog.show();
         }
-        return false;
     }
 }
