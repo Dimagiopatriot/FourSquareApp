@@ -39,7 +39,6 @@ public class VenueDetailsActivity extends AppCompatActivity implements CustomIte
 
     private String venueId;
     private ProgressDialog progressDialog;
-    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,16 +157,18 @@ public class VenueDetailsActivity extends AppCompatActivity implements CustomIte
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        double latitude = getIntent().getDoubleExtra(Constants.INTENT_LATITUDE, 0.);
-        double longitude = getIntent().getDoubleExtra(Constants.INTENT_LONGITUDE, 0.);
+        double defaultValue = 0.;
+        double latitude = getIntent().getDoubleExtra(Constants.INTENT_LATITUDE, defaultValue);
+        double longitude = getIntent().getDoubleExtra(Constants.INTENT_LONGITUDE, defaultValue);
         int zoom = 16;
 
-        map = googleMap;
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+        float positionX = 0.0f;
+        float positionY = 1.0f;
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(latitude, longitude), zoom));
-        map.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)).anchor(0.0f, 1.0f) // Anchors the marker on the bottom left
+        googleMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)).anchor(positionX, positionY) // Anchors the marker on the bottom left
                 .position(new LatLng(latitude, longitude)));
-        map.getUiSettings().setMapToolbarEnabled(false);
+        googleMap.getUiSettings().setMapToolbarEnabled(false);
     }
 }

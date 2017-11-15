@@ -55,13 +55,20 @@ public class TipAdapter extends CommonRecyclerViewAdapter<Tip, TipAdapter.Holder
         Context context = holder.itemView.getContext();
         if (tip.getPhoto() != null) {
             Photo tipPhoto = tip.getPhoto();
-            tipPhoto.setWidth(SizeChanger.zoomOut(tipPhoto.getWidth(), 5));
-            tipPhoto.setHeight(SizeChanger.zoomOut(tipPhoto.getHeight(), 5));
+
+            int scaleForImage = 5;
+
+            tipPhoto.setWidth(SizeChanger.zoomOut(tipPhoto.getWidth(), scaleForImage));
+            tipPhoto.setHeight(SizeChanger.zoomOut(tipPhoto.getHeight(), scaleForImage));
             Picasso.with(context).load(tipPhoto.toString()).into(holder.image);
         }
         Photo userAvatar = tip.getUser().getUserPhoto();
-        userAvatar.setWidth(40);
-        userAvatar.setHeight(40);
+
+        int widthInPx = 40;
+        int heightInPx = 40;
+
+        userAvatar.setWidth(widthInPx);
+        userAvatar.setHeight(heightInPx);
         Picasso.with(context).load(userAvatar.toString()).into(holder.userAvatar);
     }
 
@@ -75,7 +82,7 @@ public class TipAdapter extends CommonRecyclerViewAdapter<Tip, TipAdapter.Holder
         ImageView image, userAvatar;
         TextView text, userName, likes;
 
-        public Holder(View itemView) {
+        Holder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             image = (ImageView) itemView.findViewById(R.id.tipImage);

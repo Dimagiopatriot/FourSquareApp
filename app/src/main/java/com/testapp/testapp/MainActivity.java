@@ -127,9 +127,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private LocationSettingsRequest.Builder settingsLocationRequest() {
+        int timeoutIntervalInMilliseconds = 10000;
+        int timeoutFastestIntervalInMilliseconds = 1000;
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000); // 10 seconds
-        locationRequest.setFastestInterval(1000); // 1 second
+        locationRequest.setInterval(timeoutIntervalInMilliseconds);
+        locationRequest.setFastestInterval(timeoutFastestIntervalInMilliseconds);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
