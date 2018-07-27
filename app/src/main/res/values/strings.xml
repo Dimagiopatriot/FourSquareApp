@@ -13,4 +13,8 @@
     <string name="stub_venue_description">Description....</string>
     <string name="stub_venue_rating">3.5</string>
     <string name="stub_tip">So tasty coffee. You should visit it!!!</string>
+
+    <!-- Permissions warning -->
+    <string name="text_warn">Permission Mandatory for this App</string>
+    <string name="settings">Settings</string>
 </resources>
