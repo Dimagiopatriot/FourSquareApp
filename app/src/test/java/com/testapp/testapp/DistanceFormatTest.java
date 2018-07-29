@@ -24,4 +24,20 @@ public class DistanceFormatTest {
         String actual = DistanceFormatter.fromMetersToKilometersFormat(6348);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void kotlinFromMetersToKilometersUpperRoundTest(){
+        String expected = "6.4";
+        String actual = com.testapp.testapp.kotlin.model.utils.DistanceFormatter
+                .Companion.fromMetersToKilometersFormat(6352);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void kotlinFromMetersToKilometersLowerRoundTest(){
+        String expected = "6.3";
+        String actual = com.testapp.testapp.kotlin.model.utils.DistanceFormatter
+                .Companion.fromMetersToKilometersFormat(6348);
+        assertEquals(expected, actual);
+    }
 }
