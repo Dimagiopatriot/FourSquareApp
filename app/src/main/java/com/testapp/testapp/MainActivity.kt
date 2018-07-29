@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         if (googleApiClient != null) {
             googleApiClient?.connect()
         } else {
-            Toast.makeText(this, "Google API Client not Connected!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Google API Client not Connected!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     private fun callbackPendingResult(builder: LocationSettingsRequest.Builder) {
         val result = LocationServices.getSettingsClient(this).checkLocationSettings(builder.build())
-        result.addOnCompleteListener({
+        result.addOnCompleteListener {
             try {
                 if (!checkPermissions()) {
                     requestPermissions()
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                         }
                 }
             }
-        })
+        }
     }
 
     override fun onLocationChanged(location: Location?) {
@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 exception.printStackTrace()
             }
         } else {
-            Log.i("Current Location", "Location services connection failed with code " + connectionResult.getErrorCode());
+            Log.i("Current Location", "Location services connection failed with code " + connectionResult.errorCode)
         }
     }
 
@@ -190,11 +190,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
     private fun getLastLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         fusedLocationClient!!.lastLocation
-                .addOnCompleteListener(this, { task ->
+                .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful && task.result != null) {
                         lastLocation = task.result
                     }
-                })
+                }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -227,7 +227,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == requestPermissionsRequestCode) {
-            if (grantResults.get(0) == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation()
             } else {
                 // Permission denied.
