@@ -12,7 +12,7 @@ class RequestParametersHolder private constructor(){
         val instance: RequestParametersHolder by lazy { Holder.INSTANCE }
     }
 
-    private val requestParameters: MutableMap<String, String> = HashMap()
+    val requestParameters: MutableMap<String, String> = HashMap()
 
     init {
         requestParameters[DATE_VERSION_FIELD] = DateFormatter.getCurrentDateInApiVersionFormat()

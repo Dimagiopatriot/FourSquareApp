@@ -27,7 +27,7 @@ class VenuePresenter(private val view: CustomListView<Venue>,
         if (commonResponse != null) {
             val responseSearchVenues = commonResponse.response
             val responseVenues = responseSearchVenues.venues
-
+            setPrimaryCategoryForVenues(responseVenues)
             view.onSuccessResponse(responseVenues)
         }
         view.onEndRequest()
