@@ -27,13 +27,12 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
-import com.testapp.testapp.model.entity.Venue
-import com.testapp.testapp.presenter.VenuesPresenter
-import com.testapp.testapp.presenter.adapter.CommonRecyclerViewAdapter
-import com.testapp.testapp.presenter.adapter.VenueAdapter
-import com.testapp.testapp.view.AdapterView
-import com.testapp.testapp.view.CustomListView
-
+import com.testapp.testapp.kotlin.model.entity.Venue
+import com.testapp.testapp.kotlin.presenter.VenuePresenter
+import com.testapp.testapp.kotlin.presenter.adapter.CommonRecyclerViewAdapter
+import com.testapp.testapp.kotlin.presenter.adapter.VenueAdapter
+import com.testapp.testapp.kotlin.view.AdapterView
+import com.testapp.testapp.kotlin.view.CustomListView
 
 /**
  * Created by dmitriysmishnyi on 25.07.18.
@@ -206,7 +205,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 val adapter: CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder> = VenueAdapter()
                 val customListView: CustomListView<Venue> = AdapterView(applicationContext, venuesLoading, adapter, recyclerView)
 
-                val presenter = VenuesPresenter(customListView, lastLocation, query)
+                val presenter = VenuePresenter(customListView, lastLocation, query)
                 presenter.getResponse()
                 return false
             }

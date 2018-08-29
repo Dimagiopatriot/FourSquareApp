@@ -9,7 +9,7 @@ import com.testapp.testapp.kotlin.model.entity.Photo
 /**
  * Created by dmitriysmishnyi on 29.08.18.
  */
-class PhotosView(private val activity: Activity) : CustomView<List<Photo>> {
+class PhotosView(private val activity: Activity) : CustomListView<Photo> {
 
     private val firstPhoto = activity.findViewById<ImageView>(R.id.venueFirstPhoto)!!
     private val secondPhoto = activity.findViewById<ImageView>(R.id.venueSecondPhoto)!!

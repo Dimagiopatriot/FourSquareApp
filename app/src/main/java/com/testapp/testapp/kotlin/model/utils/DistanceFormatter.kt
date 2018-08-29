@@ -1,6 +1,6 @@
 package com.testapp.testapp.kotlin.model.utils
 
-import com.testapp.testapp.Constants
+import com.testapp.testapp.kotlin.UI
 import java.util.*
 
 class DistanceFormatter {
@@ -8,7 +8,7 @@ class DistanceFormatter {
     companion object {
         fun fromMetersToKilometersFormat(distanceInMeters: Int): String {
             val precise = 10
-            var distanceInKilometers: Double = distanceInMeters.toDouble() / Constants.UI.KILOMETER_IN_METERS
+            var distanceInKilometers: Double = distanceInMeters.toDouble() / UI.KILOMETER_IN_METERS
             distanceInKilometers *= precise
             val roundedDistance: Int = Math.round(distanceInKilometers).toInt()
             distanceInKilometers = roundedDistance.toDouble() / precise

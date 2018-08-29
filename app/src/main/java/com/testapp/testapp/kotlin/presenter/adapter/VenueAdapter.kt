@@ -19,7 +19,10 @@ import com.testapp.testapp.kotlin.model.utils.DistanceFormatter
 /**
  * Created by dmitriysmishnyi on 28.08.18.
  */
-class VenueAdapter(val venueList: MutableList<Venue>) : CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder>() {
+class VenueAdapter : CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder>() {
+
+    private val venueList: MutableList<Venue> = arrayListOf()
+
     override fun addItems(items: List<Venue>) {
         venueList.addAll(items)
         notifyDataSetChanged()

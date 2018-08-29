@@ -1,8 +1,8 @@
 package com.testapp.testapp.kotlin.model.entity
 
 import com.google.gson.annotations.SerializedName
-import com.testapp.testapp.Constants
-import com.testapp.testapp.model.utils.SizeChanger
+import com.testapp.testapp.kotlin.UI
+import com.testapp.testapp.kotlin.model.utils.SizeChanger
 
 data class Photo(@SerializedName("prefix") val urlPrefix: String,
                  @SerializedName("suffix") val urlSuffix: String,
@@ -10,11 +10,11 @@ data class Photo(@SerializedName("prefix") val urlPrefix: String,
                  @SerializedName("height") var height: Int) {
 
     fun zoomOutWidth() {
-        width = SizeChanger.zoomOut(width, Constants.UI.SCALE)
+        width = SizeChanger.zoomOut(width, UI.SCALE)
     }
 
     fun zoomInHeight() {
-        height = SizeChanger.zoomIn(height, Constants.UI.SCALE)
+        height = SizeChanger.zoomIn(height, UI.SCALE)
     }
 
     override fun toString(): String = urlPrefix + width + "x" + height + urlSuffix
