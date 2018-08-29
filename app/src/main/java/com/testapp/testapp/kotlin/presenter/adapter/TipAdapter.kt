@@ -34,7 +34,7 @@ class TipAdapter(val tipList: MutableList<Tip>): CommonRecyclerViewAdapter<Tip, 
     override fun getItemCount(): Int = tipList.size
 
     override fun onBindViewHolder(holder: Holder?, position: Int) {
-        val currentTip = tipList.get(position)
+        val currentTip = tipList[position]
         holder?.text?.text = currentTip.tipText
         holder?.likes?.text = currentTip.tipLikes.count.toString()
         holder?.userName?.text = currentTip.user.userFirstName

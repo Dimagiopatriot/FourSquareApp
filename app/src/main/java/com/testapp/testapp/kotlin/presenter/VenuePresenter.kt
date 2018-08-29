@@ -7,11 +7,11 @@ import com.testapp.testapp.kotlin.model.entity.response.Response
 import com.testapp.testapp.kotlin.model.entity.response.ResponseSearchVenues
 import com.testapp.testapp.kotlin.model.rest.RestApiManager
 import com.testapp.testapp.kotlin.presenter.utils.RequestParametersHolder
-import com.testapp.testapp.view.CustomListView
+import com.testapp.testapp.kotlin.view.CustomView
 import retrofit2.Call
 import retrofit2.Callback
 
-class VenuePresenter(private val view: CustomListView<Venue>,
+class VenuePresenter(private val view: CustomView<List<Venue>?>,
                      private val lastKnownLocation: Location?,
                      private val query: String) : Callback<Response<ResponseSearchVenues>>, Presenter {
 

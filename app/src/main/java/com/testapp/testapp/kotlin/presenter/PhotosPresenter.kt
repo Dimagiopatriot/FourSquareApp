@@ -5,12 +5,12 @@ import com.testapp.testapp.kotlin.model.entity.response.Response
 import com.testapp.testapp.kotlin.model.entity.response.ResponsePhotos
 import com.testapp.testapp.kotlin.model.rest.RestApiManager
 import com.testapp.testapp.kotlin.presenter.utils.RequestParametersHolder
-import com.testapp.testapp.view.CustomListView
+import com.testapp.testapp.kotlin.view.CustomView
 
 import retrofit2.Call
 import retrofit2.Callback
 
-class PhotosPresenter(val viewForList: CustomListView<Photo>, val venueId: String) : Presenter, Callback<Response<ResponsePhotos>> {
+class PhotosPresenter(val viewForList: CustomView<List<Photo>?>, val venueId: String) : Presenter, Callback<Response<ResponsePhotos>> {
 
     override fun getResponse() {
         val restApiManager = RestApiManager.instance
