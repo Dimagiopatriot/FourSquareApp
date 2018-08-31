@@ -33,38 +33,38 @@ class VenueAdapter : CommonRecyclerViewAdapter<Venue, VenueAdapter.Holder>() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
-        val row = LayoutInflater.from(parent?.context).inflate(R.layout.venue_item_row, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        val row = LayoutInflater.from(parent.context).inflate(R.layout.venue_item_row, parent, false)
         return Holder(row)
     }
 
     override fun getItemCount(): Int = venueList.size
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         val currentVenue = venueList[position]
-        holder?.venueId = currentVenue.id.toInt()
-        holder?.latitude = currentVenue.location.latitude
-        holder?.longitude = currentVenue.location.longitude
-        holder?.name?.text = currentVenue.name
-        holder?.category?.text = currentVenue.primaryCategory.name
-        holder?.address?.text = currentVenue.location.address
-        holder?.price?.text = currentVenue.price.toString()
+        holder.venueId = currentVenue.id
+        holder.latitude = currentVenue.location.latitude
+        holder.longitude = currentVenue.location.longitude
+        holder.name.text = currentVenue.name
+        holder.category.text = currentVenue.primaryCategory.name
+        holder.address.text = currentVenue.location.address
+        holder.price.text = currentVenue.price?.toString()
 
         if (currentVenue.location.distance != 0) {
-            holder?.distance?.text = DistanceFormatter.fromMetersToKilometersFormat(currentVenue.location.distance)
+            holder.distance.text = DistanceFormatter.fromMetersToKilometersFormat(currentVenue.location.distance)
         } else {
-            holder?.distance?.visibility = View.GONE
+            holder.distance.visibility = View.GONE
         }
 
-        holder?.rating?.text = currentVenue.rating.toString()
-        holder?.rating?.setBackgroundColor(Color.parseColor("#${currentVenue.ratingColor}"))
+        holder.rating.text = currentVenue.rating.toString()
+        holder.rating.setBackgroundColor(Color.parseColor("#${currentVenue.ratingColor}"))
 
-        Picasso.with(holder?.itemView?.context).load(currentVenue.primaryCategory.icon.toString()).into(holder?.venueImage)
+        Picasso.with(holder.itemView?.context).load(currentVenue.primaryCategory.icon.toString()).into(holder.venueImage)
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        var venueId: Int? = null
+        var venueId: String? = null
         var latitude: Double? = null
         var longitude: Double? = null
 

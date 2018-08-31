@@ -5,12 +5,11 @@ import com.testapp.testapp.kotlin.model.entity.response.Response
 import com.testapp.testapp.kotlin.model.entity.response.ResponseTips
 import com.testapp.testapp.kotlin.model.rest.RestApiManager
 import com.testapp.testapp.kotlin.presenter.utils.RequestParametersHolder
-import com.testapp.testapp.kotlin.view.CustomView
-
+import com.testapp.testapp.kotlin.view.CustomListView
 import retrofit2.Call
 import retrofit2.Callback
 
-class TipsPresenter(private val viewForList: CustomView<List<Tip>?>, val venueId: String) : Presenter, Callback<Response<ResponseTips>> {
+class TipsPresenter(private val viewForList: CustomListView<Tip>, val venueId: String) : Presenter, Callback<Response<ResponseTips>> {
     override fun onFailure(call: Call<Response<ResponseTips>>?, t: Throwable?) {
         viewForList.onFailureRequest()
     }
@@ -18,7 +17,7 @@ class TipsPresenter(private val viewForList: CustomView<List<Tip>?>, val venueId
     override fun onResponse(call: Call<Response<ResponseTips>>?, response: retrofit2.Response<Response<ResponseTips>>?) {
         val commonResponse = response?.body()
         val responseTips = commonResponse?.response
-        viewForList.onSuccessResponse(responseTips?.tipsWrapper?.items)
+        viewForList.onSuccessResponse(responseTips?.tipsWrapper!!.items)
         viewForList.onEndRequest()
     }
 

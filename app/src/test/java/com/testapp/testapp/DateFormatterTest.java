@@ -1,6 +1,6 @@
 package com.testapp.testapp;
 
-import com.testapp.testapp.presenter.utils.DateFormatter;
+import com.testapp.testapp.kotlin.presenter.utils.DateFormatter;
 
 import org.junit.Test;
 
@@ -14,8 +14,8 @@ public class DateFormatterTest {
 
     @Test
     public void testDateFormatter(){
-        String expected = "20171105";
-        String actual = DateFormatter.getCurrentDateInApiVersionFormat();
+        String expected = "20180830";
+        String actual = DateFormatter.Companion.getCurrentDateInApiVersionFormat();
         assertEquals(expected, actual);
     }
 }

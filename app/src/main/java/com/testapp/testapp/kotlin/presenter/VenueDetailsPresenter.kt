@@ -10,11 +10,11 @@ import com.testapp.testapp.kotlin.view.CustomView
 import retrofit2.Call
 import retrofit2.Callback
 
-class VenueDetailsPresenter(val view: CustomView<Venue?>, val venueId: String): Presenter, Callback<Response<ResponseVenue>> {
+class VenueDetailsPresenter(val view: CustomView<Venue?>, var venueId: String?): Presenter, Callback<Response<ResponseVenue>> {
     override fun getResponse() {
         val restApiManager = RestApiManager.instance
         val responseCall = restApiManager.getVenueApi()
-                ?.venueDetails(venueId, RequestParametersHolder.instance.requestParameters)
+                ?.venueDetails(venueId!!, RequestParametersHolder.instance.requestParameters)
         responseCall?.enqueue(this)
         view.onStartRequest()
     }

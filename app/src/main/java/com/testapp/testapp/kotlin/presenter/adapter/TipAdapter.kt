@@ -14,7 +14,9 @@ import com.testapp.testapp.kotlin.model.utils.SizeChanger
 /**
  * Created by dmitriysmishnyi on 28.08.18.
  */
-class TipAdapter(val tipList: MutableList<Tip>): CommonRecyclerViewAdapter<Tip, TipAdapter.Holder>() {
+class TipAdapter: CommonRecyclerViewAdapter<Tip, TipAdapter.Holder>() {
+
+    private val tipList = listOf<Tip>() as MutableList<Tip>
 
     override fun addItems(items: List<Tip>) {
         tipList.addAll(items)
@@ -26,14 +28,14 @@ class TipAdapter(val tipList: MutableList<Tip>): CommonRecyclerViewAdapter<Tip, 
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.tip_item_row, parent, false)
         return Holder(view)
     }
 
     override fun getItemCount(): Int = tipList.size
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         val currentTip = tipList[position]
         holder?.text?.text = currentTip.tipText
         holder?.likes?.text = currentTip.tipLikes.count.toString()
